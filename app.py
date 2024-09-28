@@ -22,7 +22,15 @@ while running:
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_m]:
-        position_item.y -= 300
+        position_item.y -= 5
+    if keys[pygame.K_s]:
+        position_item.y +=5
+    if keys[pygame.K_a]:
+        position_item.x -=5
+    if keys[pygame.K_d]:
+        position_item.x += 5
+    if keys[pygame.K_DELETE]:
+        pygame.quit()
 
 
 
@@ -30,4 +38,4 @@ while running:
 
     pygame.display.flip()
     clock.tick(60)
-pygame.quit
+pygame.quit()
