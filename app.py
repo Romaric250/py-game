@@ -7,6 +7,9 @@ clock = pygame.time.Clock()
 running = True 
 dt = 0
 
+
+position_item = pygame.Vector2(screen.get_width()/2, screen.get_height()/2)
+
 while running:
 
     for event in pygame.event.get():
@@ -14,7 +17,12 @@ while running:
             running = False
     screen.fill('purple')
 
-    pygame.draw.circle(screen, 'pink',(100,500),30)
+    pygame.draw.circle(screen, 'pink',position_item,30)
+
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_m]:
+        position_item.y -= 300
 
 
 
