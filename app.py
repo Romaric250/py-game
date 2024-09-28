@@ -18,6 +18,7 @@ while running:
     screen.fill('purple')
 
     pygame.draw.circle(screen, 'pink',position_item,30)
+    pygame.draw.aaline(screen,'red',(screen.get_width()/2,0), (screen.get_width(),screen.get_height()/2))
 
     keys = pygame.key.get_pressed()
 
