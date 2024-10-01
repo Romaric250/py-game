@@ -41,15 +41,7 @@ while isrunning:
 
     keys = key.get_pressed()
 
-    if keys[K_w]:
-        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
-
-        print(initialposition.x,initialposition.y,IsEaterOutOfRange)
-
-        if IsEaterOutOfRange:
-            continue
-        else:
-            initialposition.y -=2
+    
 
     if keys[K_s]:
        
@@ -57,6 +49,13 @@ while isrunning:
        print(initialposition)
        if IsEaterOutOfRange:
            initialposition.y += 2
+    
+    if keys[K_w]:
+       
+       IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
+       print(initialposition)
+       if IsEaterOutOfRange:
+           initialposition.y -= 2
     
     if keys[K_w]:
        
