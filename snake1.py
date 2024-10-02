@@ -50,7 +50,7 @@ while isrunning:
        if initialposition.y >= 580:
            continue
        else:
-            initialposition.y += 2
+            initialposition.y += 4
     
     if keys[K_w]:
        
@@ -59,33 +59,31 @@ while isrunning:
        if initialposition.x <= 300 and initialposition.y <= 20:
            continue
        else:
-          initialposition.y -= 2
+          initialposition.y -= 4
     
-    if keys[K_w]:
-       
-       IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
-       print(initialposition)
-       if IsEaterOutOfRange:
-           initialposition.y -= 2
-
+   
     if keys[K_d]:
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
        print(initialposition)
        print(initialposition)
-       if initialposition.y >= 580:
+       if initialposition.x >= 580:
            continue
        else:
-          initialposition.y += 2
+          initialposition.x += 4
           
         
 
     if keys[K_a]:
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
        print(initialposition)
-       
-       if IsEaterOutOfRange:
-           
-        initialposition.x -= 2
+      
+
+      
+       if initialposition.x <=20:
+           continue
+       else:
+          initialposition.x -= 4
+        
 
 
 
