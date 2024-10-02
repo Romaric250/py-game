@@ -18,11 +18,6 @@ def SetBoundariesforEater(screenwidth,screenheight)->bool:
     else:
         return False
         
-    
-
-
-
-
 init()
 
 screen1 = display.set_mode((600,600))
@@ -96,23 +91,6 @@ while isrunning:
            continue
        else:
           initialposition.x -= 4
-        
-
-
-
-           
-           
-
-
-
-
-
-
-
-
-
-
-
     display.flip()
     clockin.tick(60)
 
