@@ -39,6 +39,14 @@ while isrunning:
 
     draw.circle(screen1,'red',initialposition,20)
 
+    draw.circle(screen1,'green',(200,200),10)
+
+   
+
+    for i in range(10,200):
+        draw.line(screen1,'yellow',(200+i,i),(i,200+i))
+
+
     keys = key.get_pressed()
 
     
@@ -50,6 +58,7 @@ while isrunning:
        if initialposition.y >= 580:
            continue
        else:
+            
             initialposition.y += 4
     
     if keys[K_w]:
@@ -59,7 +68,11 @@ while isrunning:
        if initialposition.x <= 300 and initialposition.y <= 20:
            continue
        else:
-          initialposition.y -= 4
+          if initialposition.y == 200 and initialposition.x == 200:
+              continue
+          else:
+              
+            initialposition.y -= 4
     
    
     if keys[K_d]:
