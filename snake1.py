@@ -2,6 +2,13 @@ from pygame import *
 import random
 
 
+
+
+newtuple = (3,4)
+oldtuple = (3,4)
+
+print(newtuple == oldtuple)
+
 def StartGame():
     return True
 
@@ -32,14 +39,17 @@ while isrunning:
             isrunning = False
     screen1.fill('gray')
 
+   
+
+    for i in range(1,200):
+        draw.line(screen1,'yellow',(40*i,i),(i,40*i))
+
+    for j in range(2,100):
+        draw.line(screen1,'black',(20*j,j),(j,20*j))
+
     draw.circle(screen1,'red',initialposition,20)
 
     draw.circle(screen1,'green',(200,200),10)
-
-   
-
-    for i in range(10,200):
-        draw.line(screen1,'yellow',(200+i,i),(i,200+i))
 
 
     keys = key.get_pressed()
