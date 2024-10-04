@@ -3,7 +3,6 @@ import random
 
 
 
-
 newtuple = (3,4)
 oldtuple = (3,4)
 
@@ -12,11 +11,9 @@ print(newtuple == oldtuple)
 def StartGame():
     return True
 
-def RandomiseFoodLocation(screenwidth,screenheight)->tuple:
-    if type(screenheight) != 'Int' or 'Float' and type(screenwidth) != 'Int' or 'Float':
-        return tuple(0,0)
+def RandomiseFoodLocation(screenwidth,screenheight):
 
-    return tuple(random.randint(20,screenwidth-20),random.randint(20,screenheight-20))
+    return {random.randint(20,screenwidth-20),random.randint(20,screenheight-20)}
 
 def SetBoundariesforEater(screenwidth,screenheight)->bool:
     
@@ -88,6 +85,9 @@ while isrunning:
            continue
        else:
           initialposition.x += 4
+
+          x= RandomiseFoodLocation(initialposition.x,initialposition.y)
+          print(x)
           
         
 
