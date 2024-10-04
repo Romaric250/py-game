@@ -1,6 +1,6 @@
 from pygame import *
 import random
-
+import time as Time
 
 
 newtuple = (3,4)
@@ -71,6 +71,7 @@ while isrunning:
        else:
             
             initialposition.y += 4
+            # Time.sleep(2)
     
     if keys[K_w]:
        
@@ -84,6 +85,7 @@ while isrunning:
           else:
               
             initialposition.y -= 4
+            # Time.sleep(2)
             
     
    
