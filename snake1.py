@@ -13,8 +13,7 @@ def StartGame():
 
 def RandomiseFoodLocation(screenwidth,screenheight):
 
-    return {random.randint(20,screenwidth-20),random.randint(20,screenheight-20)}
-
+    return {random.randint(20,screenwidth.__floor__()-20),random.randint(20,screenheight.__floor__()-20)}
 def SetBoundariesforEater(screenwidth,screenheight)->bool:
     
     if screenheight <=20 and screenwidth<=20 or screenheight <=20 and screenwidth >= screenwidth - 20 or screenheight >= screenheight - 20 and screenwidth <=20 or screenheight >= screenheight-20 and screenwidth >= screenwidth-20:
@@ -52,6 +51,8 @@ while isrunning:
     keys = key.get_pressed()
 
     
+    if key[any]:
+        print('Any key was pressed')
 
     if keys[K_s]:
        
