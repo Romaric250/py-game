@@ -13,7 +13,7 @@ def StartGame():
 
 def RandomiseFoodLocation(screenwidth,screenheight):
 
-    return {random.randint(20,screenwidth.__floor__()-20),random.randint(20,screenheight.__floor__()-20)}
+    return Vector2(random.randint(20,screenwidth.__floor__()-20),random.randint(20,screenheight.__floor__()-20))
 def SetBoundariesforEater(screenwidth,screenheight)->bool:
     
     if screenheight <=20 and screenwidth<=20 or screenheight <=20 and screenwidth >= screenwidth - 20 or screenheight >= screenheight - 20 and screenwidth <=20 or screenheight >= screenheight-20 and screenwidth >= screenwidth-20:
@@ -28,6 +28,8 @@ clockin = time.Clock()
 isrunning = True
 
 initialposition = Vector2(screen1.get_width()/2,screen1.get_height()/2)
+initialfood = Vector2(screen1.get_width()/3,screen1.get_height()/3)
+
 
 while isrunning:
     for events in event.get():
@@ -45,15 +47,21 @@ while isrunning:
 
     draw.circle(screen1,'red',initialposition,20)
 
-    draw.circle(screen1,'green',(200,200),10)
+    food = draw.circle(screen1,'green',initialfood,10)
+    food1 = draw.circle(screen1,'green',(400,200),10)
 
 
     keys = key.get_pressed()
 
     
-    if key[any]:
-        print('Any key was pressed')
+    for ke in keys:
+        if ke:
+            print("any key has been pressed")
+            food.move(300,200)
+            newfood = RandomiseFoodLocation(screen1.get_width(),screen1.get_height())
+            initialfood = newfood
 
+    
     if keys[K_s]:
        
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
@@ -76,6 +84,7 @@ while isrunning:
           else:
               
             initialposition.y -= 4
+            
     
    
     if keys[K_d]:
