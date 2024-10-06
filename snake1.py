@@ -3,10 +3,9 @@ import random
 import time as Time
 
 
-newtuple = (3,4)
+newtuple = (4,4)
 oldtuple = (3,4)
 
-print(newtuple == oldtuple)
 
 def StartGame():
     return True
@@ -20,16 +19,24 @@ def SetBoundariesforEater(screenwidth,screenheight)->bool:
         return True 
     else:
         return False
-        
+
+def Collision():
+    pass
 init()
 
 screen1 = display.set_mode((600,600))
 clockin = time.Clock()
 isrunning = True
 
+users_score = 0
+fonts = font.SysFont('arial',70)
+
+
+
 initialposition = Vector2(screen1.get_width()/2,screen1.get_height()/2)
 initialfood = Vector2(screen1.get_width()/3,screen1.get_height()/3)
 
+start_game_timer = Time.time()
 
 while isrunning:
     for events in event.get():
@@ -47,8 +54,9 @@ while isrunning:
 
     draw.circle(screen1,'red',initialposition,20)
 
-    food = draw.circle(screen1,'green',initialfood,10)
+    food = draw.circle(screen1,'pink',initialfood,10)
     food1 = draw.circle(screen1,'green',(400,200),10)
+    
 
 
     keys = key.get_pressed()
@@ -57,15 +65,38 @@ while isrunning:
     for ke in keys:
         if ke:
             print("any key has been pressed")
-            food.move(300,200)
-            newfood = RandomiseFoodLocation(screen1.get_width(),screen1.get_height())
-            initialfood = newfood
 
+            iswidth_small = abs(initialfood.x - initialposition.x)
+
+            isheight_small = abs(initialfood.y - initialposition.y)
+
+            print({
+                'width_to_colide':iswidth_small,
+                'heigth_to_colide':isheight_small
+            })
+
+            if iswidth_small <= 8 and isheight_small <= 8:
+                print('colision occured')
+
+                newfood = RandomiseFoodLocation(screen1.get_width(),screen1.get_height())
+                initialfood = newfood
+                users_score = users_score+1
+                
+                
+            print({
+                'userscore_here':users_score,
+                
+
+            })
+    
     
     if keys[K_s]:
        
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
-       print(initialposition)
+       print({
+        'eater':initialposition,
+        'food':initialfood
+       })
        if initialposition.y >= 580:
            continue
        else:
@@ -74,9 +105,11 @@ while isrunning:
             # Time.sleep(2)
     
     if keys[K_w]:
-       
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
-       print(initialposition)
+       print({
+        'eater':initialposition,
+        'food':initialfood
+       })
        if initialposition.x <= 300 and initialposition.y <= 20:
            continue
        else:
@@ -91,8 +124,10 @@ while isrunning:
    
     if keys[K_d]:
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
-       print(initialposition)
-       print(initialposition)
+       print({
+        'eater':initialposition,
+        'food':initialfood
+       })
        if initialposition.x >= 580:
            continue
        else:
@@ -105,7 +140,10 @@ while isrunning:
 
     if keys[K_a]:
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
-       print(initialposition)
+       print({
+        'eater':initialposition,
+        'food':initialfood
+       })
       
 
       
@@ -113,8 +151,21 @@ while isrunning:
            continue
        else:
           initialposition.x -= 4
+
+    text = fonts.render(f'Score:{users_score}',True,(0,0,255))
+    screen1.blit(text,(0,500))
+
+    timercounter = fonts.render(f'Time:{abs(start_game_timer-Time.time())}',True,(0,0,255))
+    screen1.blit(timercounter,(300,500))
     display.flip()
     clockin.tick(60)
 
 quit()
+
+end_game = Time.time()
+
+print({
+    'score':users_score,
+    'time taken': f'{round(end_game-start_game_timer)}s'
+})
 
