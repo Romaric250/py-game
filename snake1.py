@@ -38,7 +38,7 @@ fonts = font.SysFont('arial',70)
 
 initialposition = Vector2(screen1.get_width()/2,screen1.get_height()/2)
 initialfood = Vector2(screen1.get_width()/3,screen1.get_height()/3)
-
+eater = Rect(30,30,40,30)
 start_game_timer = Time.time()
 
 while isrunning:
@@ -55,12 +55,12 @@ while isrunning:
     for j in range(2,100):
         draw.line(screen1,'black',(20*j,j),(j,20*j))
 
-    draw.circle(screen1,'red',initialposition,20)
+    # draw.circle(screen1,'red',initialposition,20)
 
+    eater_test = draw.rect(screen1,'red',eater,0,10)
     food = draw.circle(screen1,'pink',initialfood,10)
     # food1 = draw.circle(screen1,'green',(400,200),10)
 
-    eater_test = draw.rect(screen1,'red',Rect(30,30,30,30),0,10)
     
 
 
@@ -74,9 +74,9 @@ while isrunning:
         if ke:
             print("any key has been pressed")
 
-            iswidth_small = abs(initialfood.x - initialposition.x)
+            iswidth_small = abs(initialfood.x - eater.x)
 
-            isheight_small = abs(initialfood.y - initialposition.y)
+            isheight_small = abs(initialfood.y - eater.y)
 
             print({
                 'width_to_colide':iswidth_small,
@@ -89,6 +89,8 @@ while isrunning:
                 newfood = RandomiseFoodLocation(screen1.get_width(),screen1.get_height())
                 initialfood = newfood
                 users_score = users_score+1
+                eater.clipline(3,3,3,3)
+                
                 
                 
             print(
@@ -96,37 +98,42 @@ while isrunning:
                 'userscore_here':users_score,
             }
             )
-            eater_test.update(4,4,4,4)
+            
             print("teater")
     
     if keys[K_s]:
        
+       
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
        print({
-        'eater':initialposition,
+        'eater':(eater.x,eater.y),
         'food':initialfood
        })
-       if initialposition.y >= 580:
+       if eater.y >= 580:
            continue
        else:
+            eater.left = 10
+            # eater.y += 4
+
             
-            initialposition.y += 4
+
             # Time.sleep(2)
     
     if keys[K_w]:
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
        print({
-        'eater':initialposition,
+        'eater':(eater.x,eater.y),
         'food':initialfood
        })
-       if initialposition.x <= 300 and initialposition.y <= 20:
+       if eater.x <= 300 and eater.y <= 20:
            continue
        else:
-          if initialposition.y == 200 and initialposition.x == 200:
+          if eater.y == 200 and eater.x == 200:
               continue
           else:
               
-            initialposition.y -= 4
+           
+            eater.y -=4
             # Time.sleep(2)
             
     
@@ -134,13 +141,14 @@ while isrunning:
     if keys[K_d]:
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
        print({
-        'eater':initialposition,
+        'eater':(eater.x,eater.y),
         'food':initialfood
        })
-       if initialposition.x >= 580:
+       if eater.x >= 580:
            continue
        else:
-          initialposition.x += 4
+         
+          eater.x +=4
 
           x= RandomiseFoodLocation(initialposition.x,initialposition.y)
           print(x)
@@ -150,16 +158,17 @@ while isrunning:
     if keys[K_a]:
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
        print({
-        'eater':initialposition,
+        'eater':(eater.x,eater.y),
         'food':initialfood
        })
       
 
       
-       if initialposition.x <=20:
+       if eater.x <=20:
            continue
        else:
-          initialposition.x -= 4
+         
+          eater.x -=4
 
     text = fonts.render(f'Score:{users_score}',True,(0,0,255))
     screen1.blit(text,(0,500))
