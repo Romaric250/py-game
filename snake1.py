@@ -7,6 +7,9 @@ newtuple = (4,4)
 oldtuple = (3,4)
 
 
+
+
+
 def StartGame():
     return True
 
@@ -158,7 +161,7 @@ while isrunning:
     timercounter = fonts.render(f'Time:{abs(start_game_timer-Time.time())}',True,(0,0,255))
     screen1.blit(timercounter,(300,500))
     display.flip()
-    clockin.tick(60)
+    clockin.tick(30)
 
 quit()
 
@@ -169,3 +172,12 @@ print({
     'time taken': f'{round(end_game-start_game_timer)}s'
 })
 
+
+# def User_data(userinfor:list[{
+#     "name":"John doe",
+#     "email":"email here"
+# }]):
+#     return {
+#         "username":"username-here",
+#         "scores":['score1','score2','score3','score4']
+#     }
