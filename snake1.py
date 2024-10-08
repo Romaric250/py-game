@@ -58,7 +58,12 @@ while isrunning:
     draw.circle(screen1,'red',initialposition,20)
 
     food = draw.circle(screen1,'pink',initialfood,10)
-    food1 = draw.circle(screen1,'green',(400,200),10)
+    # food1 = draw.circle(screen1,'green',(400,200),10)
+
+    eater_test = draw.rect(screen1,'red',Rect(30,30,30,30),0,10)
+    
+
+
     
 
 
@@ -86,12 +91,13 @@ while isrunning:
                 users_score = users_score+1
                 
                 
-            print({
+            print(
+                {
                 'userscore_here':users_score,
-                
-
-            })
-    
+            }
+            )
+            eater_test.update(4,4,4,4)
+            print("teater")
     
     if keys[K_s]:
        
