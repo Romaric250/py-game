@@ -112,12 +112,11 @@ while isrunning:
        if eater.y >= 580:
            continue
        else:
-            eater.left = 10
-            # eater.y += 4
+            # eater.left = 10
 
-            
-
-            # Time.sleep(2)
+            eater.y += 4
+           
+               # Time.sleep(2)
     
     if keys[K_w]:
        IsEaterOutOfRange = SetBoundariesforEater(initialposition.x,initialposition.y)
